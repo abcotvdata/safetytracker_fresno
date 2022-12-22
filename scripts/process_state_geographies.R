@@ -86,12 +86,12 @@ rural_tulare$place <- "Tulare Co. Sheriff's Department"
 
 # Make the rural "remnant" area polygons for each county
 valley_county_pops <- valley_places %>% group_by(county) %>% summarise(pop=sum(population))
-rural_fresno$population <- fresno_county$population - 0
-rural_kings$population <- kings_county$population - 0
-rural_madera$population <- madera_county$population - 0
+rural_fresno$population <- fresno_county$population - 842500
+rural_kings$population <- kings_county$population - 121000
+rural_madera$population <- madera_county$population - 85200
 rural_mariposa$population <- mariposa_county$population - 0
-rural_merced$population <- merced_county$population - 0
-rural_tulare$population <- tulare_county$population - 0
+rural_merced$population <- merced_county$population - 189900
+rural_tulare$population <- tulare_county$population - 338300
 
 # Add these rural sheriff's coverage areas back into socal_places
 valley_places <- rbind(valley_places,rural_fresno,rural_kings,rural_madera,rural_mariposa,rural_merced,rural_tulare)
@@ -109,18 +109,20 @@ rm(cal_counties, cal_places, all_valley_places,valley_county_pops)
 # police_map$county <- ifelse(is.na(police_map$county),"Los Angeles County",police_map$county)
 # Recode place field for all the LA county policing districts
 # police_map$place <- case_when(police_map$agency=="OTHER" & police_map$commtype=="City" ~ police_map$place_name,
-                              police_map$agency=="LASD" & police_map$commtype=="City" ~ police_map$place_name,
-                              police_map$agency=="LASD" & police_map$commtype=="Unincorporated" ~ paste(police_map$place_name, police_map$district),
-                              police_map$agency=="LAPD" ~ paste(police_map$agency, police_map$district),
-                              TRUE ~ police_map$place)
+#                              police_map$agency=="LASD" & police_map$commtype=="City" ~ police_map$place_name,
+#                              police_map$agency=="LASD" & police_map$commtype=="Unincorporated" ~ paste(police_map$place_name, police_map$district),
+#                              police_map$agency=="LAPD" ~ paste(police_map$agency, police_map$district),
+#                              TRUE ~ police_map$place)
+
+
 
 # Set bins for beats pop map
-popbins <- c(0,1000,5000,25000,50000,75000,100000,125000,150000,175000,200000,Inf)
-poppal <- colorBin("viridis", police_map$population, bins = popbins)
-poplabel <- paste(sep = "<br>", police_map$place,police_map$county,police_map$agency,police_map$commtype,prettyNum(police_map$population, big.mark = ","))
+popbins <- c(0,15000,25000,50000,70000,80000,90000,100000,110000,125000,200000,Inf)
+poppal <- colorBin("viridis", valley_places$population, bins = popbins)
+poplabel <- paste(sep = "<br>", valley_places$place,valley_places$county,valley_places$agency,valley_places$commtype,prettyNum(valley_places$population, big.mark = ","))
 # Create map
-valley_police_map <- leaflet(police_map) %>%
-  setView(-117.243, 33.70, zoom = 10) %>% 
+valley_police_map <- leaflet(valley_places) %>%
+  setView(-119.78, 36.737, zoom = 9.5) %>% 
   addProviderTiles(provider = "Esri.WorldImagery") %>%
   addProviderTiles(provider = "CartoDB.PositronOnlyLabels") %>%
   addPolygons(color = "white", popup = poplabel, weight = 2, smoothFactor = 0.5,

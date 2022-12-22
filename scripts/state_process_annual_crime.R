@@ -6,7 +6,7 @@ library(tidyr)
 # valley_places <- readRDS("scripts/rds/valley_places.rds")
 
 # Read in the state crime file
-california_annual <- read_csv("data/source/reference/california_crime_annual.csv", 
+california_annual <- read_csv("data/source/california_crime_annual.csv", 
                                     col_types = cols(Year = col_character())) %>% janitor::clean_names()
 
 # list of region's counties
@@ -61,13 +61,13 @@ countywide_autotheft <- valley_autotheft %>% group_by(county) %>% summarise(tota
 #valley_autotheft <- bind_rows(valley_autotheft %>% filter(!place %in% sheriff_contracts),lapd_autotheft,lasheriff_autotheft)
 
 # make quick tables that we can use for a quick simple map to be improved later
-valley_murder <- inner_join(police_map %>% select(3:5),valley_murder,by="place")
-valley_sexassault <- inner_join(police_map %>% select(3:5),valley_sexassault,by="place")
-valley_assault <- inner_join(police_map %>% select(3:5),valley_assault,by="place")
-valley_robbery <- inner_join(police_map %>% select(3:5),valley_robbery,by="place")
-valley_burglary <- inner_join(police_map %>% select(3:5),valley_burglary,by="place")
-valley_theft <- inner_join(police_map %>% select(3:5),valley_theft,by="place")
-valley_autotheft <- inner_join(police_map %>% select(3:5),valley_autotheft,by="place")
+valley_murder <- inner_join(valley_places %>% select(3:5),valley_murder,by="place")
+valley_sexassault <- inner_join(valley_places %>% select(3:5),valley_sexassault,by="place")
+valley_assault <- inner_join(valley_places %>% select(3:5),valley_assault,by="place")
+valley_robbery <- inner_join(valley_places %>% select(3:5),valley_robbery,by="place")
+valley_burglary <- inner_join(valley_places %>% select(3:5),valley_burglary,by="place")
+valley_theft <- inner_join(valley_places %>% select(3:5),valley_theft,by="place")
+valley_autotheft <- inner_join(valley_places %>% select(3:5),valley_autotheft,by="place")
 
 
 # MURDERS
@@ -239,85 +239,85 @@ valley_theft$rate21 <- ifelse(valley_theft$population<1000,NA,valley_theft$rate2
 valley_theft$rate_prior3years <- ifelse(valley_theft$population<1000,NA,valley_theft$rate_prior3years)
 
 # Add notations for LA area departments in markdown for charts
-valley_murder$place_chart <- case_when(valley_murder$agency=="LASD" ~ paste0(valley_murder$place,"^Area policed by ",valley_murder$agency,"^"),
-                                      valley_murder$agency=="LAPD" ~ paste0(valley_murder$place,"^Division of Los Angeles PD^"),
-                                      TRUE ~ valley_murder$place)
-valley_sexassault$place_chart <- case_when(valley_sexassault$agency=="LASD" ~ paste0(valley_sexassault$place,"^Area policed by ",valley_sexassault$agency,"^"),
-                                          valley_sexassault$agency=="LAPD" ~ paste0(valley_sexassault$place,"^Division of Los Angeles PD^"),
-                                          TRUE ~ valley_murder$place)
-valley_assault$place_chart <- case_when(valley_assault$agency=="LASD" ~ paste0(valley_assault$place,"^Area policed by ",valley_assault$agency,"^"),
-                                       valley_assault$agency=="LAPD" ~ paste0(valley_assault$place,"^Division of Los Angeles PD^"),
-                                       TRUE ~ valley_murder$place)
-valley_robbery$place_chart <- case_when(valley_robbery$agency=="LASD" ~ paste0(valley_robbery$place,"^Area policed by ",valley_robbery$agency,"^"),
-                                       valley_robbery$agency=="LAPD" ~ paste0(valley_robbery$place,"^Division of Los Angeles PD^"),
-                                       TRUE ~ valley_murder$place)
-valley_burglary$place_chart <- case_when(valley_burglary$agency=="LASD" ~ paste0(valley_burglary$place,"^Area policed by ",valley_burglary$agency,"^"),
-                                        valley_burglary$agency=="LAPD" ~ paste0(valley_burglary$place,"^Division of Los Angeles PD^"),
-                                        TRUE ~ valley_murder$place)
-valley_theft$place_chart <- case_when(valley_theft$agency=="LASD" ~ paste0(valley_theft$place,"^Area policed by ",valley_theft$agency,"^"),
-                                     valley_theft$agency=="LAPD" ~ paste0(valley_theft$place,"^Division of Los Angeles PD^"),
-                                     TRUE ~ valley_murder$place)
-valley_autotheft$place_chart <- case_when(valley_autotheft$agency=="LASD" ~ paste0(valley_autotheft$place,"^Area policed by ",valley_autotheft$agency,"^"),
-                                         valley_autotheft$agency=="LAPD" ~ paste0(valley_autotheft$place,"^Division of Los Angeles PD^"),
-                                         TRUE ~ valley_murder$place)
+# valley_murder$place_chart <- case_when(valley_murder$agency=="LASD" ~ paste0(valley_murder$place,"^Area policed by ",valley_murder$agency,"^"),
+#                                      valley_murder$agency=="LAPD" ~ paste0(valley_murder$place,"^Division of Los Angeles PD^"),
+#                                      TRUE ~ valley_murder$place)
+#valley_sexassault$place_chart <- case_when(valley_sexassault$agency=="LASD" ~ paste0(valley_sexassault$place,"^Area policed by ",valley_sexassault$agency,"^"),
+#                                          valley_sexassault$agency=="LAPD" ~ paste0(valley_sexassault$place,"^Division of Los Angeles PD^"),
+#                                          TRUE ~ valley_murder$place)
+#valley_assault$place_chart <- case_when(valley_assault$agency=="LASD" ~ paste0(valley_assault$place,"^Area policed by ",valley_assault$agency,"^"),
+#                                       valley_assault$agency=="LAPD" ~ paste0(valley_assault$place,"^Division of Los Angeles PD^"),
+#                                       TRUE ~ valley_murder$place)
+#valley_robbery$place_chart <- case_when(valley_robbery$agency=="LASD" ~ paste0(valley_robbery$place,"^Area policed by ",valley_robbery$agency,"^"),
+#                                       valley_robbery$agency=="LAPD" ~ paste0(valley_robbery$place,"^Division of Los Angeles PD^"),
+#                                       TRUE ~ valley_murder$place)
+#valley_burglary$place_chart <- case_when(valley_burglary$agency=="LASD" ~ paste0(valley_burglary$place,"^Area policed by ",valley_burglary$agency,"^"),
+#                                        valley_burglary$agency=="LAPD" ~ paste0(valley_burglary$place,"^Division of Los Angeles PD^"),
+#                                        TRUE ~ valley_murder$place)
+#valley_theft$place_chart <- case_when(valley_theft$agency=="LASD" ~ paste0(valley_theft$place,"^Area policed by ",valley_theft$agency,"^"),
+#                                     valley_theft$agency=="LAPD" ~ paste0(valley_theft$place,"^Division of Los Angeles PD^"),
+#                                     TRUE ~ valley_murder$place)
+#valley_autotheft$place_chart <- case_when(valley_autotheft$agency=="LASD" ~ paste0(valley_autotheft$place,"^Area policed by ",valley_autotheft$agency,"^"),
+#                                         valley_autotheft$agency=="LAPD" ~ paste0(valley_autotheft$place,"^Division of Los Angeles PD^"),
+#                                         TRUE ~ valley_murder$place)
 
 # Output county level files for each crime category
-# RIVERSIDE
-valley_murder %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/fresno_murder.csv")
-valley_sexassault %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/fresno_sexassault.csv")
-valley_assault %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/fresno_assault.csv")
-valley_robbery %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/fresno_robbery.csv")
-valley_burglary %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/fresno_burglary.csv")
-valley_theft %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/fresno_theft.csv")
-valley_autotheft %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/fresno_autotheft.csv")
-# ORANGE
-valley_murder %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/kings_murder.csv")
-valley_sexassault %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/kings_sexassault.csv")
-valley_assault %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/kings_assault.csv")
-valley_robbery %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/kings_robbery.csv")
-valley_burglary %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/kings_burglary.csv")
-valley_theft %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/kings_theft.csv")
-valley_autotheft %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/kings_autotheft.csv")
-# RIVERSIDE
-valley_murder %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/madera_murder.csv")
-valley_sexassault %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/madera_sexassault.csv")
-valley_assault %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/madera_assault.csv")
-valley_robbery %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/madera_robbery.csv")
-valley_burglary %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/madera_burglary.csv")
-valley_theft %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/madera_theft.csv")
-valley_autotheft %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/madera_autotheft.csv")
-# RIVERSIDE
-valley_murder %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/mariposa_murder.csv")
-valley_sexassault %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/mariposa_sexassault.csv")
-valley_assault %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/mariposa_assault.csv")
-valley_robbery %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/mariposa_robbery.csv")
-valley_burglary %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/mariposa_burglary.csv")
-valley_theft %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/mariposa_theft.csv")
-valley_autotheft %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/mariposa_autotheft.csv")
-# RIVERSIDE
-valley_murder %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/merced_murder.csv")
-valley_sexassault %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/merced_sexassault.csv")
-valley_assault %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/merced_assault.csv")
-valley_robbery %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/merced_robbery.csv")
-valley_burglary %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/merced_burglary.csv")
-valley_theft %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/merced_theft.csv")
-valley_autotheft %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/merced_autotheft.csv")
-# RIVERSIDE
-valley_murder %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/tulare_murder.csv")
-valley_sexassault %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/tulare_sexassault.csv")
-valley_assault %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/tulare_assault.csv")
-valley_robbery %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/tulare_robbery.csv")
-valley_burglary %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/tulare_burglary.csv")
-valley_theft %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/tulare_theft.csv")
-valley_autotheft %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/tulare_autotheft.csv")
-# REGION WIDE
-valley_murder %>% st_drop_geometry() %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/valley_murder.csv")
-valley_sexassault %>% st_drop_geometry() %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/valley_sexassault.csv")
-valley_assault %>% st_drop_geometry() %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/valley_assault.csv")
-valley_robbery %>% st_drop_geometry() %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/valley_robbery.csv")
-valley_burglary %>% st_drop_geometry() %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/valley_burglary.csv")
-valley_theft %>% st_drop_geometry() %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/valley_theft.csv")
-valley_autotheft %>% st_drop_geometry() %>% select(26,4:15,20,21,24) %>% write_csv("data/output/annual/valley_autotheft.csv")
+# FRESNO
+valley_murder %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/fresno_murder.csv")
+valley_sexassault %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/fresno_sexassault.csv")
+valley_assault %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/fresno_assault.csv")
+valley_robbery %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/fresno_robbery.csv")
+valley_burglary %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/fresno_burglary.csv")
+valley_theft %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/fresno_theft.csv")
+valley_autotheft %>% st_drop_geometry() %>% filter(county=="Fresno County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/fresno_autotheft.csv")
+# KINGS
+valley_murder %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/kings_murder.csv")
+valley_sexassault %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/kings_sexassault.csv")
+valley_assault %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/kings_assault.csv")
+valley_robbery %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/kings_robbery.csv")
+valley_burglary %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/kings_burglary.csv")
+valley_theft %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/kings_theft.csv")
+valley_autotheft %>% st_drop_geometry() %>% filter(county=="Kings County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/kings_autotheft.csv")
+# MADERA
+valley_murder %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/madera_murder.csv")
+valley_sexassault %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/madera_sexassault.csv")
+valley_assault %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/madera_assault.csv")
+valley_robbery %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/madera_robbery.csv")
+valley_burglary %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/madera_burglary.csv")
+valley_theft %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/madera_theft.csv")
+valley_autotheft %>% st_drop_geometry() %>% filter(county=="Madera County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/madera_autotheft.csv")
+# MARIPOSA
+valley_murder %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/mariposa_murder.csv")
+valley_sexassault %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/mariposa_sexassault.csv")
+valley_assault %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/mariposa_assault.csv")
+valley_robbery %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/mariposa_robbery.csv")
+valley_burglary %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/mariposa_burglary.csv")
+valley_theft %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/mariposa_theft.csv")
+valley_autotheft %>% st_drop_geometry() %>% filter(county=="Mariposa County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/mariposa_autotheft.csv")
+# MERCED
+valley_murder %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/merced_murder.csv")
+valley_sexassault %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/merced_sexassault.csv")
+valley_assault %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/merced_assault.csv")
+valley_robbery %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/merced_robbery.csv")
+valley_burglary %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/merced_burglary.csv")
+valley_theft %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/merced_theft.csv")
+valley_autotheft %>% st_drop_geometry() %>% filter(county=="Merced County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/merced_autotheft.csv")
+# TULARE
+valley_murder %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/tulare_murder.csv")
+valley_sexassault %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/tulare_sexassault.csv")
+valley_assault %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/tulare_assault.csv")
+valley_robbery %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/tulare_robbery.csv")
+valley_burglary %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/tulare_burglary.csv")
+valley_theft %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/tulare_theft.csv")
+valley_autotheft %>% st_drop_geometry() %>% filter(county=="Tulare County") %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/tulare_autotheft.csv")
+# VALLEY WIDE
+valley_murder %>% st_drop_geometry() %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/valley_murder.csv")
+valley_sexassault %>% st_drop_geometry() %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/valley_sexassault.csv")
+valley_assault %>% st_drop_geometry() %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/valley_assault.csv")
+valley_robbery %>% st_drop_geometry() %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/valley_robbery.csv")
+valley_burglary %>% st_drop_geometry() %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/valley_burglary.csv")
+valley_theft %>% st_drop_geometry() %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/valley_theft.csv")
+valley_autotheft %>% st_drop_geometry() %>% select(2,3:14,19,20,23) %>% write_csv("data/output/annual/valley_autotheft.csv")
 
 # Create rds files for building the trackers
 valley_murder %>% saveRDS("scripts/rds/valley_murder.rds")
