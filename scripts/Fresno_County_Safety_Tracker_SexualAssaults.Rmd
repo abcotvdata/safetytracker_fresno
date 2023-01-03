@@ -278,15 +278,15 @@ Choose a different crime to explore in the county:
 
 # Set bins for numbers of crimes for sexassaults map
 sexassaultbins1 <- c(0,
-                15,
-                25,
-                30,
-                50,
-                5000)
-sexassaultbins2 <- c(0,
-                5,
-                10,
                 20,
+                40,
+                60,
+                80,
+                200)
+sexassaultbins2 <- c(0,
+                3,
+                10,
+                30,
                 50,
                 300)
 sexassaultpal1 <- colorBin(c("#76baf9",

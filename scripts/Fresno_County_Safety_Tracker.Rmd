@@ -281,14 +281,14 @@ Choose a different crime to explore in the county:
 # Set bins for numbers of crimes for murders map
 murderbins1 <- c(0,
                 1,
-                2,
                 5,
                 10,
-                1000)
+                15,
+                50)
 murderbins2 <- c(0,
-                5,
+                1,
+                3,
                 10,
-                25,
                 50,
                 100)
 murderpal1 <- colorBin(c("#76baf9",
