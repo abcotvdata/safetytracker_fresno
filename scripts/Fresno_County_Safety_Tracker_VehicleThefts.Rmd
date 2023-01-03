@@ -247,7 +247,7 @@ ABC30's data team looked at the data that every local police agency reported to 
 
 The totals included here are for theft of a motor vehicle, and do not include thefts of parts of vehicles or thefts of personal valuables from vehicles.
 
-<subhead>A closer look at Fresno County vehicle thefts where you live</subhead>
+<subhead>A closer look at vehicle thefts where you live</subhead>
 
 The map color codes each community by the rate of incidents per 100,000 residents in 2021. Click the box in the bottom right corner to color-code communities by the number of crimes instead of the rate.
 
@@ -368,7 +368,7 @@ orange_autotheft_map <- leaflet(valley_autotheft, options = leafletOptions(zoomC
   htmlwidgets::onRender("function(el, x) {
 L.control.zoom({ position: 'topright' }).addTo(this)
 }") %>%
-  setView(-119.78, 36.737, zoom = 9.5) %>% 
+  setView(-119.78, 36.737, zoom = 9) %>% 
   addProviderTiles(provider = "Esri.WorldImagery") %>%
   addProviderTiles(provider = "CartoDB.PositronOnlyLabels") %>%
   addPolygons(color = "white", 
