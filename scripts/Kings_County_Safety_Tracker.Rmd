@@ -229,9 +229,9 @@ You can choose which crime to examine: <select onchange="window.location=this.va
 <option value="https://abcotvdata.github.io/safetytracker_fresno/Fresno_County_Safety_Tracker_VehicleThefts.html">Vehicle Thefts</option>
 </select></h2>
 <h2>Choose a different area to explore: <select onchange="window.location=this.value">
+<option value="https://abcotvdata.github.io/safetytracker_fresno/Kings_County_Safety_Tracker.html">Kings County</option>
 <option value="https://abcotvdata.github.io/safetytracker_fresno/Fresno_County_Safety_Tracker.html">Fresno County</option>
 <option value="https://abcotvdata.github.io/safetytracker_fresno/Madera_County_Safety_Tracker.html">Madera County</option>
-<option value="https://abcotvdata.github.io/safetytracker_fresno/Kings_County_Safety_Tracker.html">Kings County</option>
 <option value="https://abcotvdata.github.io/safetytracker_fresno/Mariposa_County_Safety_Tracker.html">Mariposa County</option>
 <option value="https://abcotvdata.github.io/safetytracker_fresno/Merced_County_Safety_Tracker.html">Merced County</option>
 <option value="https://abcotvdata.github.io/safetytracker_fresno/Tulare_County_Safety_Tracker.html">Tulare County</option>
