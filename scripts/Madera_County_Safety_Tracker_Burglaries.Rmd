@@ -214,10 +214,10 @@ div.legend { margin-bottom: 50px !important; }
 ```
 
 ```{r countywide totals, include=FALSE}
-burglaries_county <- countywide_burglary %>% filter(county=="Fresno County")
+burglaries_county <- countywide_burglary %>% filter(county=="Madera County")
 ```
 
-<h2>ABC30 is tracking crime and safety in communities across Fresno County. 
+<h2>ABC30 is tracking crime and safety in communities across Madera County. 
 
 You can choose which crime to examine: <select onchange="window.location=this.value">
 <option value="https://abcotvdata.github.io/safetytracker_fresno/Fresno_County_Safety_Tracker_Burglaries.html">Burglaries</option>
@@ -237,7 +237,7 @@ You can choose which crime to examine: <select onchange="window.location=this.va
 <option value="https://abcotvdata.github.io/safetytracker_fresno/Tulare_County_Safety_Tracker.html">Tulare County</option>
 </select></h2>
 
-There were <h8>`r prettyNum(burglaries_county$total21,big.mark=",")`</h8> burglaries in 2021 across Fresno County, according to data that law enforcement agencies report to the state of California.
+There were <h8>`r prettyNum(burglaries_county$total21,big.mark=",")`</h8> burglaries in 2021 across Madera County, according to data that law enforcement agencies report to the state of California.
 
 Police generally define burglary as someone illegally entering a home, business or vehicle to steal something of value or commit some other felony.
 
