@@ -217,7 +217,7 @@ div.legend { margin-bottom: 50px !important; }
 murders_county <- countywide_murder %>% filter(county=="Fresno County")
 ```
 
-<h2>ABC30 is tracking crime and safety in communities across Fresno County. 
+<h2>ABC30 is tracking crime and safety in communities in Fresno County and across the Central Valley. This safety tracker lets you look into how often major crimes happen where you live and to examine trends over time, according to data that local law enforcement agencies report to the state of California.
 
 You can choose which crime to examine: <select onchange="window.location=this.value">
 <option value="https://abcotvdata.github.io/safetytracker_fresno/Fresno_County_Safety_Tracker.html">Homicides</option>
