@@ -326,7 +326,7 @@ autotheftlabel_places <- paste(sep="",
 			<tr>
 				<td>2019</td>
 				<td>",
-valley_autotheft$`2019`,
+prettyNum(valley_autotheft$`2019`, big.mark=","),
 "</td>
 				<td>",
 valley_autotheft$rate19,
@@ -335,7 +335,7 @@ valley_autotheft$rate19,
 			<tr>
 				<td>2020</td>
 				<td>",
-valley_autotheft$`2020`,
+prettyNum(valley_autotheft$`2020`, big.mark=","),
 "</td>
 				<td>",
 valley_autotheft$rate20,

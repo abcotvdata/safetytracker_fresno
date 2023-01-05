@@ -326,7 +326,7 @@ theftlabel_places <- paste(sep="",
 			<tr>
 				<td>2019</td>
 				<td>",
-valley_theft$`2019`,
+prettyNum(valley_theft$`2019`, big.mark=","),
 "</td>
 				<td>",
 valley_theft$rate19,
@@ -335,7 +335,7 @@ valley_theft$rate19,
 			<tr>
 				<td>2020</td>
 				<td>",
-valley_theft$`2020`,
+prettyNum(valley_theft$`2020`, big.mark=","),
 "</td>
 				<td>",
 valley_theft$rate20,
@@ -353,7 +353,7 @@ valley_theft$rate21,
 						<tr>
 				<td>3-year Average</td>
 				<td>",
-valley_theft$avg_prior3years,
+prettyNum(valley_theft$avg_prior3years, big.mark=","),
 "</td>
 				<td>",
 valley_theft$rate_prior3years,
