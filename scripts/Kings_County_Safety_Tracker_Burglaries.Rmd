@@ -18,7 +18,7 @@ library(sf)
 ```
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-![<popupchatter>Updated `r format(Sys.time(), '%B %d, %Y')` by the ABC30 Data Team</popupchatter>](https://github.com/abcotvdata/safetytracker_fresno/raw/main/docs/banner_placeholder.png)
+![<popupchatter>Updated `r format(Sys.time(), '%B %d, %Y')` by the ABC30 Data Team</popupchatter>](https://github.com/abcotvdata/safetytracker_fresno/raw/main/docs/banner_kfsn.jpeg)
 
 ```{css, echo=FALSE}
 
@@ -368,7 +368,7 @@ orange_burglary_map <- leaflet(valley_burglary, options = leafletOptions(zoomCon
   htmlwidgets::onRender("function(el, x) {
 L.control.zoom({ position: 'topright' }).addTo(this)
 }") %>%
-  setView(-119.78, 36.737, zoom = 9) %>% 
+  setView(-119.88, 36.09, zoom = 9) %>% 
   addProviderTiles(provider = "Esri.WorldImagery") %>%
   addProviderTiles(provider = "CartoDB.PositronOnlyLabels") %>%
   addPolygons(color = "white", 
