@@ -360,7 +360,7 @@ valley_murder$rate_prior3years,
 "</td>
 			</tr>
 </table>",
-"<br>Source: California DOJ, LAPD and LA County Sheriff")
+"<br>Source: California DOJ and local police agencies")
 
 
 # Creating police beats map for types of crimes
