@@ -238,7 +238,7 @@ valley_theft$rate20 <- ifelse(valley_theft$population<1000,NA,valley_theft$rate2
 valley_theft$rate21 <- ifelse(valley_theft$population<1000,NA,valley_theft$rate21)
 valley_theft$rate_prior3years <- ifelse(valley_theft$population<1000,NA,valley_theft$rate_prior3years)
 
-# Add notations for LA area departments in markdown for charts
+# Add notations for Central Valley area departments in markdown for charts
 valley_murder$place_chart <- paste0(valley_murder$place,"^",valley_murder$county,"^")
 valley_sexassault$place_chart <- paste0(valley_sexassault$place,"^",valley_sexassault$county,"^")
 valley_assault$place_chart <- paste0(valley_assault$place,"^",valley_assault$county,"^")
@@ -246,6 +246,15 @@ valley_robbery$place_chart <- paste0(valley_robbery$place,"^",valley_robbery$cou
 valley_burglary$place_chart <- paste0(valley_burglary$place,"^",valley_burglary$county,"^")
 valley_theft$place_chart <- paste0(valley_theft$place,"^",valley_theft$county,"^")
 valley_autotheft$place_chart <- paste0(valley_autotheft$place,"^",valley_autotheft$county,"^")
+
+# Add notations for Central Valley area departments in markdown for charts
+valley_murder$place_chart <- ifelse(valley_murder$place_chart == "Fresno^Fresno County^", "City of Fresno^Fresno County^", valley_murder$place_chart)
+valley_sexassault$place_chart <- ifelse(valley_sexassault$place_chart == "Fresno^Fresno County^", "City of Fresno^Fresno County^", valley_sexassault$place_chart)
+valley_assault$place_chart <- ifelse(valley_assault$place_chart == "Fresno^Fresno County^", "City of Fresno^Fresno County^", valley_assault$place_chart)
+valley_robbery$place_chart <- ifelse(valley_robbery$place_chart == "Fresno^Fresno County^", "City of Fresno^Fresno County^", valley_robbery$place_chart)
+valley_burglary$place_chart <- ifelse(valley_burglary$place_chart == "Fresno^Fresno County^", "City of Fresno^Fresno County^", valley_burglary$place_chart)
+valley_theft$place_chart <- ifelse(valley_theft$place_chart == "Fresno^Fresno County^", "City of Fresno^Fresno County^", valley_theft$place_chart)
+valley_autotheft$place_chart <- ifelse(valley_autotheft$place_chart == "Fresno^Fresno County^", "City of Fresno^Fresno County^", valley_autotheft$place_chart)
 
 # Output regional and Fresno Co files for each crime category
 # VALLEY WIDE
