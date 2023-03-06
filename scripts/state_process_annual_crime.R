@@ -85,9 +85,9 @@ valley_murder$rate21 <- round((valley_murder$`2021`/valley_murder$population)*10
 valley_murder$rate_prior3years <- round((valley_murder$avg_prior3years/valley_murder$population)*100000,1)
 # for map/table making purposes, changing Inf and NaN in calc fields to NA
 valley_murder <- valley_murder %>%
-  mutate(across(where(is.numeric), ~na_if(., Inf)))
+  mutate_if(is.numeric, ~ifelse(. == Inf, NA, .))
 valley_murder <- valley_murder %>%
-  mutate(across(where(is.numeric), ~na_if(., "NaN")))
+  mutate_if(is.numeric, ~ifelse(. == "NaN", NA, .))
 # elimate rates for districts with fewer than 1,000 estimated population
 valley_murder$rate19 <- ifelse(valley_murder$population<1000,NA,valley_murder$rate19)
 valley_murder$rate20 <- ifelse(valley_murder$population<1000,NA,valley_murder$rate20)
@@ -109,9 +109,9 @@ valley_sexassault$rate21 <- round((valley_sexassault$`2021`/valley_sexassault$po
 valley_sexassault$rate_prior3years <-round((valley_sexassault$avg_prior3years/valley_sexassault$population)*100000,1)
 # for map/table making purposes, changing Inf and NaN in calc fields to NA
 valley_sexassault <- valley_sexassault %>%
-  mutate(across(where(is.numeric), ~na_if(., Inf)))
+  mutate_if(is.numeric, ~ifelse(. == Inf, NA, .))
 valley_sexassault <- valley_sexassault %>%
-  mutate(across(where(is.numeric), ~na_if(., "NaN")))
+  mutate_if(is.numeric, ~ifelse(. == "NaN", NA, .))
 # elimate rates for districts with fewer than 1,000 estimated population
 valley_sexassault$rate19 <- ifelse(valley_sexassault$population<1000,NA,valley_sexassault$rate19)
 valley_sexassault$rate20 <- ifelse(valley_sexassault$population<1000,NA,valley_sexassault$rate20)
@@ -133,9 +133,9 @@ valley_robbery$rate21 <- round((valley_robbery$`2021`/valley_robbery$population)
 valley_robbery$rate_prior3years <-round((valley_robbery$avg_prior3years/valley_robbery$population)*100000,1)
 # for map/table making purposes, changing Inf and NaN in calc fields to NA
 valley_robbery <- valley_robbery %>%
-  mutate(across(where(is.numeric), ~na_if(., Inf)))
+  mutate_if(is.numeric, ~ifelse(. == Inf, NA, .))
 valley_robbery <- valley_robbery %>%
-  mutate(across(where(is.numeric), ~na_if(., "NaN")))
+  mutate_if(is.numeric, ~ifelse(. == "NaN", NA, .))
 # elimate rates for districts with fewer than 1,000 estimated population
 valley_robbery$rate19 <- ifelse(valley_robbery$population<1000,NA,valley_robbery$rate19)
 valley_robbery$rate20 <- ifelse(valley_robbery$population<1000,NA,valley_robbery$rate20)
@@ -157,9 +157,9 @@ valley_assault$rate21 <- round((valley_assault$`2021`/valley_assault$population)
 valley_assault$rate_prior3years <-round((valley_assault$avg_prior3years/valley_assault$population)*100000,1)
 # for map/table making purposes, changing Inf and NaN in calc fields to NA
 valley_assault <- valley_assault %>%
-  mutate(across(where(is.numeric), ~na_if(., Inf)))
+  mutate_if(is.numeric, ~ifelse(. == Inf, NA, .))
 valley_assault <- valley_assault %>%
-  mutate(across(where(is.numeric), ~na_if(., "NaN")))
+  mutate_if(is.numeric, ~ifelse(. == "NaN", NA, .))
 # elimate rates for districts with fewer than 1,000 estimated population
 valley_assault$rate19 <- ifelse(valley_assault$population<1000,NA,valley_assault$rate19)
 valley_assault$rate20 <- ifelse(valley_assault$population<1000,NA,valley_assault$rate20)
@@ -181,9 +181,9 @@ valley_burglary$rate21 <- round((valley_burglary$`2021`/valley_burglary$populati
 valley_burglary$rate_prior3years <-round((valley_burglary$avg_prior3years/valley_burglary$population)*100000,1)
 # for map/table making purposes, changing Inf and NaN in calc fields to NA
 valley_burglary <- valley_burglary %>%
-  mutate(across(where(is.numeric), ~na_if(., Inf)))
+  mutate_if(is.numeric, ~ifelse(. == Inf, NA, .))
 valley_burglary <- valley_burglary %>%
-  mutate(across(where(is.numeric), ~na_if(., "NaN")))
+  mutate_if(is.numeric, ~ifelse(. == "NaN", NA, .))
 # elimate rates for districts with fewer than 1,000 estimated population
 valley_burglary$rate19 <- ifelse(valley_burglary$population<1000,NA,valley_burglary$rate19)
 valley_burglary$rate20 <- ifelse(valley_burglary$population<1000,NA,valley_burglary$rate20)
@@ -205,9 +205,9 @@ valley_autotheft$rate21 <- round((valley_autotheft$`2021`/valley_autotheft$popul
 valley_autotheft$rate_prior3years <-round((valley_autotheft$avg_prior3years/valley_autotheft$population)*100000,1)
 # for map/table making purposes, changing Inf and NaN in calc fields to NA
 valley_autotheft <- valley_autotheft %>%
-  mutate(across(where(is.numeric), ~na_if(., Inf)))
+  mutate_if(is.numeric, ~ifelse(. == Inf, NA, .))
 valley_autotheft <- valley_autotheft %>%
-  mutate(across(where(is.numeric), ~na_if(., "NaN")))
+  mutate_if(is.numeric, ~ifelse(. == "NaN", NA, .))
 # elimate rates for districts with fewer than 1,000 estimated population
 valley_autotheft$rate19 <- ifelse(valley_autotheft$population<1000,NA,valley_autotheft$rate19)
 valley_autotheft$rate20 <- ifelse(valley_autotheft$population<1000,NA,valley_autotheft$rate20)
@@ -229,9 +229,9 @@ valley_theft$rate21 <- round((valley_theft$`2021`/valley_theft$population)*10000
 valley_theft$rate_prior3years <-round((valley_theft$avg_prior3years/valley_theft$population)*100000,1)
 # for map/table making purposes, changing Inf and NaN in calc fields to NA
 valley_theft <- valley_theft %>%
-  mutate(across(where(is.numeric), ~na_if(., Inf)))
+  mutate_if(is.numeric, ~ifelse(. == Inf, NA, .))
 valley_theft <- valley_theft %>%
-  mutate(across(where(is.numeric), ~na_if(., "NaN")))
+  mutate_if(is.numeric, ~ifelse(. == "NaN", NA, .))
 # elimate rates for districts with fewer than 1,000 estimated population
 valley_theft$rate19 <- ifelse(valley_theft$population<1000,NA,valley_theft$rate19)
 valley_theft$rate20 <- ifelse(valley_theft$population<1000,NA,valley_theft$rate20)
