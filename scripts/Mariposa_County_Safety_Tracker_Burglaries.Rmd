@@ -301,17 +301,17 @@ burglarypal2 <- colorBin(c("#76baf9",
                              "#2787d6",
                              "#0058f6",
                              "#003ca6",
-                             "#00215c"), valley_burglary$`2021`, bins = burglarybins2,na.color = "#51585f")
+                             "#00215c"), valley_burglary$`2022`, bins = burglarybins2,na.color = "#51585f")
 
                             
 # Create labels for burglarys map
 burglarylabel_places <- paste(sep="",
                      "<popuptitle>",
-                     valley_burglary$`2021`,
-                     ifelse(valley_burglary$`2021`==1,
+                     valley_burglary$`2022`,
+                     ifelse(valley_burglary$`2022`==1,
                      " burglary </popuptitle><br>",
                      " burglaries </popuptitle><br>"),
-                     " in 2021 in <b>",
+                     " in 2022 in <b>",
                      ifelse(valley_burglary$place %in% sheriffs,paste0("the combined unincorporated areas patrolled by the ",valley_burglary$place),valley_burglary$place),
                      "</b>, home to an estimated ",
                      prettyNum(valley_burglary$population, big.mark=","),
@@ -348,6 +348,15 @@ valley_burglary$`2021`,
 "</td>
 				<td>",
 valley_burglary$rate21,
+"</td>
+			</tr>
+									<tr>
+				<td>2022</td>
+				<td>",
+valley_burglary$`2022`,
+"</td>
+				<td>",
+valley_burglary$rate22,
 "</td>
 			</tr>
 						<tr>
@@ -389,7 +398,7 @@ L.control.zoom({ position: 'topright' }).addTo(this)
               smoothFactor = 0.5,
               opacity = 0.6, 
               fillOpacity = 0.6,
-              fillColor = ~burglarypal2(`2021`),
+              fillColor = ~burglarypal2(`2022`),
               group="Number") %>% 
   addSearchOSM(options = searchOptions(autoCollapse=FALSE, minLength = 3,zoom=13, position="topleft")) %>%
     onRender("function(el, x) {
@@ -403,7 +412,7 @@ L.control.zoom({ position: 'topright' }).addTo(this)
             group = "Rate",
             className = "info legend Rate") %>%
   addLegend(opacity = 0.6,
-            values = valley_burglary$`2021`, 
+            values = valley_burglary$`2022`, 
             pal = burglarypal2,
             position = "bottomleft", 
             title = paste(sep="","<popuptitle>Burglaries<br>"),
