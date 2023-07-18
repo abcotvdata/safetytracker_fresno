@@ -351,12 +351,12 @@ valley_robbery$rate21,
 "</td>
 			</tr>
 						<tr>
-				<td>3-year Average</td>
+				<td>4-year Average</td>
 				<td>",
-valley_robbery$avg_prior3years,
+valley_robbery$avg_prior4years,
 "</td>
 				<td>",
-valley_robbery$rate_prior3years,
+valley_robbery$rate_prior4years,
 "</td>
 			</tr>
 </table>",

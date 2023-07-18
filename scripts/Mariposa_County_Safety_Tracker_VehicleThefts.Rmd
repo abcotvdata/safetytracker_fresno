@@ -351,12 +351,12 @@ valley_autotheft$rate21,
 "</td>
 			</tr>
 						<tr>
-				<td>3-year Average</td>
+				<td>4-year Average</td>
 				<td>",
-valley_autotheft$avg_prior3years,
+valley_autotheft$avg_prior4years,
 "</td>
 				<td>",
-valley_autotheft$rate_prior3years,
+valley_autotheft$rate_prior4years,
 "</td>
 			</tr>
 </table>",

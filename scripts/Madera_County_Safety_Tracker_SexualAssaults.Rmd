@@ -299,17 +299,17 @@ sexassaultpal2 <- colorBin(c("#76baf9",
                              "#2787d6",
                              "#0058f6",
                              "#003ca6",
-                             "#00215c"), valley_sexassault$`2021`, bins = sexassaultbins2,na.color = "#51585f")
+                             "#00215c"), valley_sexassault$`2022`, bins = sexassaultbins2,na.color = "#51585f")
 
                             
 # Create labels for sexassaults map
 sexassaultlabel_places <- paste(sep="",
                      "<popuptitle>",
-                     valley_sexassault$`2021`,
-                     ifelse(valley_sexassault$`2021`==1,
+                     valley_sexassault$`2022`,
+                     ifelse(valley_sexassault$`2022`==1,
                      " sexual assault </popuptitle><br>",
                      " sexual assaults </popuptitle><br>"),
-                     " in 2021 in <b>",
+                     " in 2022 in <b>",
                      ifelse(valley_sexassault$place %in% sheriffs,paste0("the combined unincorporated areas patrolled by the ",valley_sexassault$place),valley_sexassault$place),
                      "</b>, home to an estimated ",
                      prettyNum(valley_sexassault$population, big.mark=","),
@@ -348,13 +348,22 @@ valley_sexassault$`2021`,
 valley_sexassault$rate21,
 "</td>
 			</tr>
-						<tr>
-				<td>3-year Average</td>
+									<tr>
+				<td>2022</td>
 				<td>",
-valley_sexassault$avg_prior3years,
+valley_sexassault$`2022`,
 "</td>
 				<td>",
-valley_sexassault$rate_prior3years,
+valley_sexassault$rate22,
+"</td>
+			</tr>
+						<tr>
+				<td>4-year Average</td>
+				<td>",
+valley_sexassault$avg_prior4years,
+"</td>
+				<td>",
+valley_sexassault$rate_prior4years,
 "</td>
 			</tr>
 </table>",
@@ -387,7 +396,7 @@ L.control.zoom({ position: 'topright' }).addTo(this)
               smoothFactor = 0.5,
               opacity = 0.6, 
               fillOpacity = 0.6,
-              fillColor = ~sexassaultpal2(`2021`),
+              fillColor = ~sexassaultpal2(`2022`),
               group="Number") %>% 
   addSearchOSM(options = searchOptions(autoCollapse=FALSE, minLength = 3,zoom=13, position="topleft")) %>%
     onRender("function(el, x) {
@@ -401,7 +410,7 @@ L.control.zoom({ position: 'topright' }).addTo(this)
             group = "Rate",
             className = "info legend Rate") %>%
   addLegend(opacity = 0.6,
-            values = valley_sexassault$`2021`, 
+            values = valley_sexassault$`2022`, 
             pal = sexassaultpal2,
             position = "bottomleft", 
             title = paste(sep="","<popuptitle>Sexual Assaults<br>"),

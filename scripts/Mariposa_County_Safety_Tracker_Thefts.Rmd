@@ -351,12 +351,12 @@ valley_theft$rate21,
 "</td>
 			</tr>
 						<tr>
-				<td>3-year Average</td>
+				<td>4-year Average</td>
 				<td>",
-prettyNum(valley_theft$avg_prior3years, big.mark=","),
+prettyNum(valley_theft$avg_prior4years, big.mark=","),
 "</td>
 				<td>",
-valley_theft$rate_prior3years,
+valley_theft$rate_prior4years,
 "</td>
 			</tr>
 </table>",
