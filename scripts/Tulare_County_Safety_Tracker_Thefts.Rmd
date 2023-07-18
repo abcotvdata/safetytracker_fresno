@@ -301,17 +301,17 @@ theftpal2 <- colorBin(c("#76baf9",
                              "#2787d6",
                              "#0058f6",
                              "#003ca6",
-                             "#00215c"), valley_theft$`2021`, bins = theftbins2,na.color = "#51585f")
+                             "#00215c"), valley_theft$`2022`, bins = theftbins2,na.color = "#51585f")
 
                             
 # Create labels for thefts map
 theftlabel_places <- paste(sep="",
                      "<popuptitle>",
-                     valley_theft$`2021`,
-                     ifelse(valley_theft$`2021`==1,
+                     valley_theft$`2022`,
+                     ifelse(valley_theft$`2022`==1,
                      " theft </popuptitle><br>",
                      " thefts </popuptitle><br>"),
-                     " in 2021 in <b>",
+                     " in 2022 in <b>",
                      ifelse(valley_theft$place %in% sheriffs,paste0("the combined unincorporated areas patrolled by the ",valley_theft$place),valley_theft$place),
                      "</b>, home to an estimated ",
                      prettyNum(valley_theft$population, big.mark=","),
@@ -350,13 +350,22 @@ valley_theft$`2021`,
 valley_theft$rate21,
 "</td>
 			</tr>
-						<tr>
-				<td>3-year Average</td>
+									<tr>
+				<td>2022</td>
 				<td>",
-prettyNum(valley_theft$avg_prior3years, big.mark=","),
+valley_theft$`2022`,
 "</td>
 				<td>",
-valley_theft$rate_prior3years,
+valley_theft$rate22,
+"</td>
+			</tr>
+						<tr>
+				<td>4-year Average</td>
+				<td>",
+prettyNum(valley_theft$avg_prior4years, big.mark=","),
+"</td>
+				<td>",
+prettyNum(valley_theft$rate_prior4years, big.mark=","),
 "</td>
 			</tr>
 </table>",
@@ -389,7 +398,7 @@ L.control.zoom({ position: 'topright' }).addTo(this)
               smoothFactor = 0.5,
               opacity = 0.6, 
               fillOpacity = 0.6,
-              fillColor = ~theftpal2(`2021`),
+              fillColor = ~theftpal2(`2022`),
               group="Number") %>% 
   addSearchOSM(options = searchOptions(autoCollapse=FALSE, minLength = 3,zoom=13, position="topleft")) %>%
     onRender("function(el, x) {
@@ -403,7 +412,7 @@ L.control.zoom({ position: 'topright' }).addTo(this)
             group = "Rate",
             className = "info legend Rate") %>%
   addLegend(opacity = 0.6,
-            values = valley_theft$`2021`, 
+            values = valley_theft$`2022`, 
             pal = theftpal2,
             position = "bottomleft", 
             title = paste(sep="","<popuptitle>Thefts<br>"),
