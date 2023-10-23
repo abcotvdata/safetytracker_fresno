@@ -68,55 +68,11 @@ mariposa_county <- cal_counties %>% filter(county=="Mariposa County") %>% st_mak
 merced_county <- cal_counties %>% filter(county=="Merced County") %>% st_make_valid()
 tulare_county <- cal_counties %>% filter(county=="Tulare County") %>% st_make_valid()
 
-# Make the rural "remnant" area polygons for each county
-rural_fresno <- st_difference(fresno_county,all_valley_places)
-rural_kings <- st_difference(kings_county,all_valley_places)
-rural_madera <- st_difference(madera_county,all_valley_places)
-rural_mariposa <- st_difference(mariposa_county,all_valley_places)
-rural_merced <- st_difference(merced_county,all_valley_places)
-rural_tulare <- st_difference(tulare_county,all_valley_places)
-
-# Make the rural "remnant" area polygons for each county
-rural_fresno$place <- "Fresno Co. Sheriff's Department"
-rural_kings$place <- "Kings Co. Sheriff's Department"
-rural_madera$place <- "Madera Co. Sheriff's Department"
-rural_mariposa$place <- "Mariposa Co. Sheriff's Department"
-rural_merced$place <- "Merced Co. Sheriff's Department"
-rural_tulare$place <- "Tulare Co. Sheriff's Department"
-
-# Make the rural "remnant" area polygons for each county
-valley_county_pops <- valley_places %>% group_by(county) %>% summarise(pop=sum(population))
-rural_fresno$population <- fresno_county$population - 842500
-rural_kings$population <- kings_county$population - 121000
-rural_madera$population <- madera_county$population - 85200
-rural_mariposa$population <- mariposa_county$population - 0
-rural_merced$population <- merced_county$population - 189900
-rural_tulare$population <- tulare_county$population - 338300
-
-# Add these rural sheriff's coverage areas back into socal_places
-valley_places <- rbind(valley_places,rural_fresno,rural_kings,rural_madera,rural_mariposa,rural_merced,rural_tulare)
-
 # Do some cleanup 
-rm(rural_fresno,rural_kings,rural_madera,rural_mariposa,rural_merced,rural_tulare)
 rm(fresno_county,kings_county,madera_county,mariposa_county,merced_county,tulare_county)
 rm(cal_counties, cal_places, all_valley_places,valley_county_pops)
 
-# Create new police_map
-# la_districts <- readRDS(data/rds/la_county_police_districts.rds)
-# Remove all LA County places from the so_cal places now
-# police_map <- bind_rows(socal_places %>% filter(county!="Los Angeles County"),la_districts)
-# Add upgraded LA County districts to the new region wide police districts map
-# police_map$county <- ifelse(is.na(police_map$county),"Los Angeles County",police_map$county)
-# Recode place field for all the LA county policing districts
-# police_map$place <- case_when(police_map$agency=="OTHER" & police_map$commtype=="City" ~ police_map$place_name,
-#                              police_map$agency=="LASD" & police_map$commtype=="City" ~ police_map$place_name,
-#                              police_map$agency=="LASD" & police_map$commtype=="Unincorporated" ~ paste(police_map$place_name, police_map$district),
-#                              police_map$agency=="LAPD" ~ paste(police_map$agency, police_map$district),
-#                              TRUE ~ police_map$place)
-
-
-
-# Set bins for beats pop map
+# Set bins for beats pop map; test police jurisdictions map for region
 popbins <- c(0,15000,25000,50000,70000,80000,90000,100000,110000,125000,200000,Inf)
 poppal <- colorBin("viridis", valley_places$population, bins = popbins)
 poplabel <- paste(sep = "<br>", valley_places$place,valley_places$county,valley_places$agency,valley_places$commtype,prettyNum(valley_places$population, big.mark = ","))

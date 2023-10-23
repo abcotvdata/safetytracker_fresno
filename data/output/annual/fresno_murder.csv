@@ -1,16 +1,15 @@
 place_chart,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,inc_19to22,inc_10to22,rate22
 Huron^Fresno County^,0,0,1,1,0,1,1,3,0,0,0,0,0,NA,NA,0
-Kerman^Fresno County^,1,1,0,0,0,0,0,0,1,0,0,0,0,NA,-100,0
-Coalinga^Fresno County^,0,1,0,0,0,0,0,0,2,0,1,0,0,NA,NA,0
-Fowler^Fresno County^,0,0,0,0,0,0,0,0,0,1,0,0,0,-100,NA,0
-Clovis^Fresno County^,2,4,3,0,1,1,2,0,1,0,1,5,2,NA,0,1.7
-Firebaugh^Fresno County^,0,0,0,0,0,0,0,0,0,0,0,0,0,NA,NA,0
-Kingsburg^Fresno County^,1,0,1,0,0,0,0,0,0,0,0,1,1,NA,0,8.1
-Sanger^Fresno County^,2,2,3,2,0,1,3,2,1,0,2,1,1,NA,-50,3.8
-Mendota^Fresno County^,0,2,0,1,0,2,4,0,0,1,0,0,0,-100,NA,0
-Parlier^Fresno County^,0,3,0,2,1,1,0,1,3,0,2,3,1,NA,NA,6.8
-Selma^Fresno County^,0,0,2,0,0,4,1,3,3,3,1,2,0,-100,NA,0
-Reedley^Fresno County^,2,1,0,0,0,1,0,0,3,1,0,3,3,200,50,11.9
 Orange Cove^Fresno County^,NA,NA,NA,0,0,1,1,5,1,0,0,0,0,NA,NA,0
+Mendota^Fresno County^,0,2,0,1,0,2,4,0,0,1,0,0,0,-100,NA,0
+Fowler^Fresno County^,0,0,0,0,0,0,0,0,0,1,0,0,0,-100,NA,0
+Coalinga^Fresno County^,0,1,0,0,0,0,0,0,2,0,1,0,0,NA,NA,0
+Firebaugh^Fresno County^,0,0,0,0,0,0,0,0,0,0,0,0,0,NA,NA,0
+Kerman^Fresno County^,1,1,0,0,0,0,0,0,1,0,0,0,0,NA,-100,0
+Kingsburg^Fresno County^,1,0,1,0,0,0,0,0,0,0,0,1,1,NA,0,8.1
+Parlier^Fresno County^,0,3,0,2,1,1,0,1,3,0,2,3,1,NA,NA,6.8
+Sanger^Fresno County^,2,2,3,2,0,1,3,2,1,0,2,1,1,NA,-50,3.8
+Reedley^Fresno County^,2,1,0,0,0,1,0,0,3,1,0,3,3,200,50,11.9
 City of Fresno^Fresno County^,45,35,51,40,47,39,39,56,32,35,77,60,61,74.3,35.6,11.3
-Fresno Co. Sheriff's Department^Fresno County^,10,6,15,11,10,8,12,15,7,14,10,12,14,0,40,8.4
+Selma^Fresno County^,0,0,2,0,0,4,1,3,3,3,1,2,0,-100,NA,0
+Clovis^Fresno County^,2,4,3,0,1,1,2,0,1,0,1,5,2,NA,0,1.7
